@@ -8,6 +8,6 @@ otherwise you will not be able to import your classes from UAIC official schedul
 
 
 ![Image description](https://raw.githubusercontent.com/todireanuvalentin/My-Schedule-University-Tool/master/images/img1.PNG)
-#To delete events you need to switch the Enable delete mode button
-#You can also add your events by choosing the start time, end time, title, color and the day ! 
+# To delete events you need to switch the Enable delete mode button
+# You can also add your events by choosing the start time, end time, title, color and the day ! 
 
