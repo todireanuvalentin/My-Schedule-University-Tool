@@ -27,23 +27,12 @@ let bimport = document.getElementById("import");
 
 bimport.addEventListener("click",function(){
     let url= document.getElementById("urlf").value;
-    let xhr = new XMLHttpRequest();
-    console.log(url);
-    // 2. Configure it: GET-request for the URL /article/.../load
-    xhr.open('POST', url);
-    
-    // 3. Send the request over the network
-    xhr.send();
-    
-    // 4. This will be called after the response is received
-    xhr.onload = function() {
-      if (xhr.status != 200) { // analyze HTTP status of the response
-        alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
-      } else { // show the result
-        
-
-        let object = new DOMParser().parseFromString(xhr.response, "text/html");
-        console.log(object.getElementsByTagName("table")[0].childNodes[1]); // responseText is the server
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    fetch(proxyurl + url) 
+    .then(response => response.text())
+    .then(function(contents){
+            let object = new DOMParser().parseFromString(contents, "text/html");
+        console.log(object.getElementsByTagName("table")[0].childNodes[1]); 
         let table =object.getElementsByTagName("table")[0].childNodes[1]
         let day=0;
         for(let i = 1 ; i < table.getElementsByTagName("tr").length;i++)
@@ -71,9 +60,10 @@ bimport.addEventListener("click",function(){
         }
 
     }
+    
+    })
+    .catch(() => console.log("Canâ€™t access " + url + " response. Blocked by browser?"))
 
-      }
-    };
     
 
 
@@ -116,4 +106,3 @@ function uuidv4() {
         return v.toString(16);
     });
 }
-
